@@ -16,17 +16,57 @@
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/admin" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v1</p>
                     </a>
                 </li>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/admin/tentang" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Widgets
+                            Tentang Aplikasi
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/map" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Map Settings
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/administrator" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Administrator
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/menu" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Menu Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/settings" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Settings
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/popup" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Popup Manager
                         </p>
                     </a>
                 </li>

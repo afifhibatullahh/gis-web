@@ -36,7 +36,21 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/admin', 'Dashboard::index');
+
+$routes->group('admin', static function ($routes) {
+    $routes->get('', 'Admin\Dashboard::index');
+
+    $routes->get('tentang', 'Admin\Tentang::index');
+    $routes->get('tentang/listdata', 'Admin\Tentang::listData');
+    $routes->get('tentang/add', 'Admin\Tentang::add');
+    $routes->post('tentang/save', 'Admin\Tentang::save');
+    $routes->delete('tentang/delete', 'Admin\Tentang::delete');
+
+    $routes->get('map', 'Admin\MapSetting::index');
+    $routes->get('menu', 'Admin\MenuManager::index');
+    $routes->get('popup', 'Admin\PopupManager::index');
+    $routes->get('settings', 'Admin\Settings::index');
+});
 
 /*
  * --------------------------------------------------------------------
