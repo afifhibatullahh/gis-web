@@ -28,6 +28,8 @@
     <!-- Theme style -->
 
     <link rel="stylesheet" href="<?= base_url('style.css'); ?>">
+
+    <?= $this->renderSection('style'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -95,6 +97,8 @@
 
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
+
+    <?= $this->renderSection('js'); ?>
     <script>
         var linkDatatable = "<?= base_url("admin/tentang/listdata") ?>";
     </script>
@@ -120,9 +124,6 @@
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
-
-    <!-- Summernote -->
-    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
 </body>
 
 </html>

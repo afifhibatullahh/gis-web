@@ -47,7 +47,18 @@ class Tentang extends BaseController
         $author = $this->request->getVar('author');
         $date_publish = $this->request->getVar('date_publish');
 
-        if ($id != null) {
-        }
+        if ($id == null) {
+            $data = [
+                'title' => $title,
+                'content' => $content,
+                'status' => $status,
+                'author' => $author,
+                'date_publish' => $date_publish
+            ];
+
+            $this->tentangModel->save($data);
+
+            return redirect()->to('admin/tentang');
+        } else return redirect()->to('admin/tentang');
     }
 }

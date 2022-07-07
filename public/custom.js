@@ -26,17 +26,6 @@ $(document).ready(function () {
   });
 });
 
-$(function () {
-  // Summernote
-  $("#summernote").summernote();
-
-  // CodeMirror
-  CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-    mode: "htmlmixed",
-    theme: "monokai",
-  });
-});
-
 //   //   $(":button").click(function () {
 //   //     var rows_selected = table.column(0).checkboxes.selected();
 
