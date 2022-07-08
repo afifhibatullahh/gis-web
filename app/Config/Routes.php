@@ -46,6 +46,12 @@ $routes->group('admin', static function ($routes) {
     $routes->post('tentang/save', 'Admin\Tentang::save');
     $routes->delete('tentang/delete', 'Admin\Tentang::delete');
 
+    $routes->get('maps', 'Admin\MapSetting::index');
+    $routes->get('maps/listdata', 'Admin\MapSetting::listData');
+    $routes->get('maps/add', 'Admin\MapSetting::add');
+    $routes->post('maps/save', 'Admin\MapSetting::save');
+    $routes->delete('maps/delete', 'Admin\MapSetting::delete');
+
     $routes->get('map', 'Admin\MapSetting::index');
     $routes->get('menu', 'Admin\MenuManager::index');
     $routes->get('popup', 'Admin\PopupManager::index');

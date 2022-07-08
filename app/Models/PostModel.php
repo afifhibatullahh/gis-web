@@ -5,24 +5,20 @@ namespace App\Models;
 use CodeIgniter\Config\Services;
 use CodeIgniter\Model;
 
-class TentangModel extends Model
+class PostModel extends Model
 {
-    protected $table      = 'tentang';
-    protected $primaryKey = 'id';
+    protected $table      = 'post';
 
-    protected $allowedFields = ['title', 'author', 'description', 'content', 'status'];
+    protected $allowedFields = ['title', 'author', 'description', 'content', 'status', 'slug', 'post_type', 'category_id', 'date_publish', 'date_modify', 'image', 'kecamatan', 'others',];
 
-    protected $useTimestamps = true;
-
-
-    public function getDataTables()
+    public function getDataTablesTentang()
     {
-        $lists = $this->findAll();
+        $lists = $this->where('post_type', 'profil')->findAll();
         $data = [];
-
+        $i = 1;
         foreach ($lists as $list) {
             $row = [];
-            $row[] = $list['id'];
+            $row[] = '';
             $row[] = "<p> action </p?";
             $row[] = $list['title'];
             $row[] = $list['author'];
