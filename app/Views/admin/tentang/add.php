@@ -55,7 +55,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <form action="/admin/tentang/save" method="post" id="form">
-                    <input type="hidden" name="author" value='1'>
+                    <input type="hidden" name="author" value='admin'>
                     <div class="row">
                         <div class="col-12 col-lg-8">
                             <div class="input-group mb-3">
@@ -120,6 +120,11 @@
     $(function() {
         $("#datepicker").datepicker({
             dateFormat: "yy-mm-dd",
+            beforeShow: function() {
+                setTimeout(function() {
+                    $('.ui-datepicker').css('z-index', 99999999999999);
+                }, 0);
+            }
         });
     });
 </script>

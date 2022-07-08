@@ -99,3 +99,29 @@
 <!-- /.content-wrapper -->
 
 <?= $this->endSection(); ?>
+
+
+<?= $this->section('js'); ?>
+
+<script>
+    $(document).ready(function() {
+        var table = $("#example").DataTable({
+            // processing: true,
+            // serverSide: true,
+            ajax: linkDatatable,
+            columnDefs: [{
+                targets: 0,
+                checkboxes: {
+                    selectRow: true,
+                },
+            }, ],
+            select: {
+                style: "multi",
+            },
+            order: [],
+            // order: [[1, "asc"]],
+        });
+    });
+</script>
+
+<?= $this->endSection(); ?>

@@ -3,15 +3,15 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\TentangModel;
+use App\Models\PostModel;
 use CodeIgniter\HTTP\Request;
 
 class Tentang extends BaseController
 {
-    protected $tentangModel;
+    protected $postModel;
     public function __construct()
     {
-        $this->tentangModel = new TentangModel();
+        $this->postModel = new PostModel();
     }
 
     public function index()
@@ -21,7 +21,7 @@ class Tentang extends BaseController
 
     public function listData()
     {
-        $list = $this->tentangModel->getDataTables();
+        $list = $this->postModel->getDataTablesTentang();
 
         return json_encode($list);
     }
@@ -42,23 +42,22 @@ class Tentang extends BaseController
     public function save($id = null)
     {
         $title = $this->request->getVar('title');
-        $content = $this->request->getVar('content');
-        $status = $this->request->getVar('status');
-        $author = $this->request->getVar('author');
-        $date_publish = $this->request->getVar('date_publish');
+        $slug = url_title($title, '-', true);
 
         if ($id == null) {
             $data = [
                 'title' => $title,
-                'content' => $content,
-                'status' => $status,
-                'author' => $author,
-                'date_publish' => $date_publish
+                'slug' => $slug,
+                'content' => $this->request->getVar('content'),
+                'status' => $this->request->getVar('status'),
+                'author' => $this->request->getVar('author'),
+                'date_publish' => $this->request->getVar('date_publish'),
+                'post_type' => 'profil'
             ];
 
-            $this->tentangModel->save($data);
+            $this->postModel->save($data);
 
             return redirect()->to('admin/tentang');
-        } else return redirect()->to('admin/tentang');
+        } else return redirect()->to('admin/tentang/add');
     }
 }
