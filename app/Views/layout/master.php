@@ -101,7 +101,6 @@
 
     <?= $this->renderSection('js'); ?>
     <script>
-        var linkDatatable = "<?= base_url("admin/tentang/listdata") ?>";
     </script>
     <script src="<?= base_url('custom.js'); ?>"></script>
     <!-- DataTables  & Plugins -->

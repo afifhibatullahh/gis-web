@@ -71,8 +71,10 @@
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Title" name="title">
-                                        <?= $validation->listErrors() ?>
+                                        <input type="text" id="title" class="form-control <?= $validation->hasError('title') ? 'is-invalid' : ''; ?>" placeholder="Title" name="title">
+                                        <div id="title" class="invalid-feedback">
+                                            <?= $validation->getError('title'); ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-4">
@@ -111,9 +113,8 @@
                                 <div class="col-12 col-lg-4">
                                     <div class="input-group mb-3">
                                         <label>Kecamatan</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option value="Alabama" selected="selected">Alabama</option>
-                                            <option value="Alaska">Alaska</option>
+                                        <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
+                                            <option disabled>Pilih</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,7 +153,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Cover</label>
-                                <input class="form-control" type="file" id="cover" name="cover" onchange="showPreview(event);">
+                                <input class="form-control <?= $validation->hasError('cover') ? 'is-invalid' : ''; ?>" type="file" id="cover" name="cover" onchange="showPreview(event);">
+                                <div id="title" class="invalid-feedback">
+                                    <?= $validation->getError('cover'); ?>
+                                </div>
                             </div>
                             <div class="preview mb-3" style="border: 1px solid; padding: 5px;">
                                 <img id="coverPreview" src="<?= base_url('/img/poster.jpg'); ?>">
@@ -228,6 +232,21 @@
             preview.src = src;
         }
     }
+
+    $.getJSON("https://ibnux.github.io/data-indonesia/kecamatan/1801.json", function(data) {
+        var items = [];
+        var kecamatan = $('#kecamatan');
+        $.each(data, function(key, val) {
+            // items.push("<li id='" + key + "'>" + val + "</li>");
+            console.log(val);
+            kecamatan.append('<option value="' + val.nama + '">' + val.nama + '</option>')
+        });
+
+        // $("<ul/>", {
+        //     "class": "my-new-list",
+        //     html: items.join("")
+        // }).appendTo("body");
+    });
 </script>
 
 <?= $this->endSection(); ?>

@@ -43,7 +43,6 @@ class MapSetting extends BaseController
 
     public function add()
     {
-        session();
         $data = [
             'category' => $this->categoryModel->findAll(),
             'validation' => \Config\Services::validation()
@@ -52,16 +51,44 @@ class MapSetting extends BaseController
         return view('admin/map/add', $data);
     }
 
+    public function edit($slug)
+    {
+        $data = [
+            'map' => $this->postModel->where('post_type', 'map')
+                ->orWhere('slug', $slug)->first()
+        ];
+
+        return view('admin/map/edit', $data);
+    }
+
+    public function delete($id)
+    {
+        $image = $this->postModel->select('image')->find($id);
+        if ($image != null) {
+            unlink('img/' . $image);
+        }
+        $this->postModel->delete($id);
+    }
+
     public function save($param = null)
     {
         if (!$this->validate([
-            'title' => 'required',
-            'cover' => 'is_image[cover]',
+            'title' => [
+                'rules' => 'required|is_unique[post.title]',
+                'errors' => [
+                    'required' => 'title harus diisi',
+                    'is_unique' => 'title sudah dipakai',
+                ]
+            ],
+            // 'cover' => [
+            //     'rules' => 'mime_in[image,image/jpg,image/jpeg,image/gif,image/png]',
+            //     'errors' => [
+            //         'mime_in' => 'gambar tidak sesuai format'
+            //     ]
+            // ],
         ])) {
-            // ...
-            $validation = \Config\Services::validation();
-            if ($param == null)  return redirect()->to('/admin/maps/add')->withInput()->with('validation', $validation);
-            else return redirect()->to('/admin/maps/edit')->withInput()->with('validation', $validation);
+            if ($param == null)  return redirect()->to('/admin/maps/add')->withInput();
+            else return redirect()->to('/admin/maps/edit')->withInput();
         }
 
         $title = $this->request->getVar('title');
@@ -72,11 +99,11 @@ class MapSetting extends BaseController
         if ($imageName != 'poster.jpg') {
             $imageName = $image->getRandomName();
             $image->move('img', $imageName);
-        }
+        } else $imageName = 'poster.jpg';
 
         $others = [
             'latitude' => $this->request->getVar('latitude'),
-            'longtitude' => $this->request->getVar('longtitude'),
+            'longitude' => $this->request->getVar('longtitude'),
             'description' => $this->request->getVar('description'),
             'address' => $this->request->getVar('kecamatan')
         ];

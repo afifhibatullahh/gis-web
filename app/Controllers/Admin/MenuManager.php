@@ -23,7 +23,7 @@ class MenuManager extends BaseController
     public function save()
     {
         $json = $this->request->getVar('menu');
-        if ($json == null) {
+        if ($json != null) {
             $menu = json_decode($json);
             $i = 1;
             foreach ($menu as $data) {
@@ -44,13 +44,14 @@ class MenuManager extends BaseController
         return redirect()->to('/admin/menu/');
     }
 
-    public function edit($link)
+    public function edit($id)
     {
-        $menu = $this->menuModel->select('*')->where('link', $link)->first();
+        $menu = $this->menuModel->find($id);
         $data = [
-            'title' => $menu['tiitle'],
+            'title' => $menu['title'],
             'url' => $menu['url'],
-            'target' => $menu['target']
+            'target' => $menu['target'],
+            'menu' => $this->menuModel->orderBy('sort', 'ASC')->findAll()
         ];
 
         return view('/admin/menu/edit', $data);

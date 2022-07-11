@@ -1,5 +1,9 @@
 <?= $this->extend('layout/master'); ?>
 
+<?= $this->section('style'); ?>
+
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 
 
@@ -103,8 +107,14 @@
 
 <?= $this->section('js'); ?>
 
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+<script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 <script>
     $(document).ready(function() {
+
+        var linkDatatable = "<?= base_url("admin/tentang/listdata") ?>";
         var table = $("#example").DataTable({
             // processing: true,
             // serverSide: true,
