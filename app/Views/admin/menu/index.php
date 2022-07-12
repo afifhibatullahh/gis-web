@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary d-inline float-right mt-3" id="btnMenu" type="submit" form="form">
+                            <button class="btn btn-primary d-inline float-right mt-3" id="btnMenu" disabled type="submit" form="form">
                                 <p class="d-inline">
                                     Save
                                 </p>
