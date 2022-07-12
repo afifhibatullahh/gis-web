@@ -64,8 +64,10 @@ $routes->group('admin', static function ($routes) {
     $routes->get('settings', 'Admin\Settings::index');
 });
 
+$routes->get('/(:segment)', 'Home::index/$1');
+$routes->get('/(:segment)/(:segment)', 'Home::index/$1/$2');
 /*
- * --------------------------------------------------------------------
+* --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
  *
