@@ -132,7 +132,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <textarea id="summernote" name="content">
+                            <textarea id="summernote" name="description">
                             </textarea>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -167,8 +167,8 @@
                                 <input type="text" class="form-control" name="link">
                             </div>
                             <div class="my-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                                <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="address"></textarea>
                             </div>
 
                         </div>

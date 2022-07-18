@@ -105,7 +105,7 @@ class MapSetting extends BaseController
             'latitude' => $this->request->getVar('latitude'),
             'longitude' => $this->request->getVar('longtitude'),
             'description' => $this->request->getVar('description'),
-            'address' => $this->request->getVar('kecamatan')
+            'address' => $this->request->getVar('address'),
         ];
 
         if ($param == null) {
@@ -113,7 +113,6 @@ class MapSetting extends BaseController
             $data = [
                 'title' => $title,
                 'slug' => $slug,
-                'content' => $this->request->getVar('content'),
                 'status' => $this->request->getVar('status'),
                 'author' => $this->request->getVar('author'),
                 'date_create' => date('Y-m-d H:i:s'),

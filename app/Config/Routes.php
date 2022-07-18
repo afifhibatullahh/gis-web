@@ -35,9 +35,20 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
 $routes->get('/', 'Home::index');
 
-$routes->group('admin', static function ($routes) {
+// Login/out
+$routes->get('login',  '\Myth\Auth\Controllers\AuthController::login');
+$routes->post('login', '\Myth\Auth\Controllers\AuthController::attemptLogin');
+$routes->get('logout', '\Myth\Auth\Controllers\AuthController::logout');
+
+
+// Registration
+$routes->get('register', '\Myth\Auth\Controllers\AuthController:register', ['filter' => 'role:admin']);
+$routes->post('register', '\Myth\Auth\Controllers\AuthController:attemptRegister');
+
+$routes->group('admin', ['filter' => 'role:admin'], static function ($routes) {
     $routes->get('', 'Admin\Dashboard::index');
 
     $routes->get('tentang', 'Admin\Tentang::index');
@@ -63,7 +74,7 @@ $routes->group('admin', static function ($routes) {
     $routes->get('popup', 'Admin\PopupManager::index');
     $routes->get('settings', 'Admin\Settings::index');
 });
-
+// 
 $routes->get('/(:segment)', 'Home::index/$1');
 $routes->get('/(:segment)/(:segment)', 'Home::index/$1/$2');
 /*
